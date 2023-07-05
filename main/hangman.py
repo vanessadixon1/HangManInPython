@@ -7,7 +7,7 @@ index_num = random.randint(0, len(choices) - 1)
 
 random_pick = choices[index_num].lower()
 
-word_to_guess = []
+guess_word = []
 
 end_of_game = False
 
@@ -16,12 +16,12 @@ count_tries = 7
 word_for_checking = ""
 
 for character in range(0, len(random_pick)):
-    word_to_guess += "_"
+    guess_word += "_"
     word_for_checking += "0"
 
 print(stages.logo)
 
-print(f"\n{word_to_guess}")
+print(f"\n{guess_word}")
 
 count = 0
 
@@ -53,16 +53,16 @@ while not end_of_game:
 
         for position in range(len(random_pick)):
             if random_pick[position] == user_input and position == 0:
-                word_to_guess[position] = user_input.upper()
+                guess_word[position] = user_input.upper()
                 count += 1
             elif random_pick[position] == user_input:
-                word_to_guess[position] = user_input.lower()
+                guess_word[position] = user_input.lower()
                 count += 1
 
-        if count == len(word_to_guess):
+        if count == len(guess_word):
             print("CONGRATULATIONS YOU WON!👏🏾")
             end_of_game = True
 
-        print(word_to_guess)
+        print(guess_word)
 
 
