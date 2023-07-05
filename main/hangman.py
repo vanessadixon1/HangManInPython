@@ -5,7 +5,7 @@ choices = ["Love", "Cool", "Happiness", "Cat", "Candy"]
 
 index_num = random.randint(0, len(choices) - 1)
 
-random_pick = choices[index_num]
+random_pick = choices[index_num].lower()
 
 word_to_guess = []
 
@@ -23,33 +23,46 @@ print(stages.logo)
 
 print(f"\n{word_to_guess}")
 
+count = 0
+
 while not end_of_game:
     user_input = input("\npick a single letter:\n").lower()
-    user_input_count = random_pick.lower().count(user_input)
-    user_input_index = random_pick.lower().find(user_input)
 
-    if len(user_input) > 1:
+    if user_input == "":
+        print("no response received")
+    elif len(user_input) > 1:
         print("You can only select one letter. Please try again!")
     else:
-        print(stages.stages[count_tries - 1])
-        if user_input_index == -1 and count_tries > 0:
-            print(user_input_index)
+        user_index = -1
+
+        for index in range(0, len(random_pick)):
+            if random_pick[index] == user_input:
+                user_index = index
+
+        if user_index == -1 and count_tries > 0:
+            print(stages.stages[count_tries - 1])
             if count_tries == 1:
                 print("GAME OVER YOU LOSE!👎🏾")
                 end_of_game = True
             else:
-                print(f"Please try again you have {count_tries - 1}")
+                if count_tries == 2:
+                    print(f"Please try again you have {count_tries - 1} more try")
+                else:
+                    print(f"Please try again you have {count_tries - 1} more tries")
                 count_tries -= 1
 
-        while user_input_count > 0:
-            if user_input_index == 0:
-                user_input = user_input.upper()
-            word_to_guess[user_input_index] = user_input
-            random_pick = random_pick.replace(user_input, "0", 1)
-            user_input_count -= 1
-            user_input_index = random_pick.lower().find(user_input)
-            print(word_to_guess)
+        for position in range(len(random_pick)):
+            if random_pick[position] == user_input and position == 0:
+                word_to_guess[position] = user_input.upper()
+                count += 1
+            elif random_pick[position] == user_input:
+                word_to_guess[position] = user_input.lower()
+                count += 1
 
-        if random_pick == word_for_checking:
+        if count == len(word_to_guess):
             print("CONGRATULATIONS YOU WON!👏🏾")
             end_of_game = True
+
+        print(word_to_guess)
+
+
