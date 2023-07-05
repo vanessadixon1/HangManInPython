@@ -33,7 +33,6 @@ while not end_of_game:
     elif len(user_input) > 1:
         print("You can only select one letter. Please try again!")
     else:
-        user_index = -1
 
         if user_input not in random_pick and count_tries > 0:
             print(stages.stages[count_tries-1])
