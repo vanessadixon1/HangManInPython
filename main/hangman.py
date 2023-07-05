@@ -49,6 +49,7 @@ while not end_of_game:
             user_input_count -= 1
             user_input_index = random_pick.lower().find(user_input)
             print(word_to_guess)
-            if random_pick == word_for_checking:
-                print("CONGRATULATIONS YOU WON!👏🏾")
-                end_of_game = True
+
+        if random_pick == word_for_checking:
+            print("CONGRATULATIONS YOU WON!👏🏾")
+            end_of_game = True
